@@ -24,15 +24,15 @@ spacing = 2
 padding-right = 5
 module-margin = 4
 
-font-1 = "UbuntuMono Nerd Font:Regular:size=15:antialias=true"
-font-0 = FiraCode-Bold:size=11;-1
+font-0 = "UbuntuMono Nerd Font:Regular:size=15"
+font-1 = FiraCode-Bold:size=11;-1
 font-2 = FontAwesome:size=10;0
 font-3 = Misc Termsynu:size=11;3
 font-4 = Noto Sans:size=7;3
 font-5 = "Wuncon Siji:pixelsize=10;1"
 
 modules-left = xmonad
-modules-right = volume wired-network date
+modules-right = volume date
 
 [bar/bottom]
 monitor = DVI-D-0
@@ -52,14 +52,14 @@ padding-left= 4
 module-margin-left = 0
 module-margin-right = 6
 
-font-0 = FiraCode-Bold:size=11;-1
-font-1 = FontAwesome:size=10;0
-font-2 = DroidSansMonoForPowerline\ Nerd\ Font=14,1
+font-0 = "UbuntuMono Nerd Font:Regular:size=15"
+font-1 = FiraCode-Bold:size=11;-1
+font-2 = FontAwesome:size=10;0
 font-3 = Misc Termsynu:size=11;3
 font-4 = Noto Sans:size=7;3
 font-5 = Wuncon Siji:pixelsize=10;3
 
-modules-left = filesystem filesystem-compact
+modules-left = date network filesystem filesystem-compact
 modules-right = cpu memory temperature 
 
 
@@ -105,7 +105,7 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date =    %%{F#99}%Y-%m-%d%%{F-} %%{F#fff}%H:%M%%{F-}
 date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
 [module/memory]
@@ -299,6 +299,36 @@ label-mounted-foreground = ${background}
 label-unmounted = ${module/filesystem.label-unmounted}
 label-unmounted-foreground = ${module/filesystem.label-unmounted-foreground}
 
+[module/network]
+type = internal/network
+interface = enp0s31f6
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+format-connected-underline = #55aa55
+format-connected-prefix = " asd"
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
 
 
 ; vim:ft=dosini
